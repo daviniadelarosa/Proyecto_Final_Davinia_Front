@@ -1,0 +1,32 @@
+<h2>Gestión de Libros</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label>Título:</label>
+  <input formControlName="title" type="text" />
+  <label>ISBN:</label>
+  <input formControlName="isbn" type="text" />
+  <button type="submit">{{ editMode ? 'Actualizar' : 'Crear' }}</button>
+  <button type="button" (click)="resetForm()" *ngIf="editMode">Cancelar</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>ISBN</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{ book.id }}</td>
+      <td>{{ book.title }}</td>
+      <td>{{ book.isbn }}</td>
+      <td>
+        <button (click)="editBook(book)">Editar</button>
+        <button (click)="deleteBook(book.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
